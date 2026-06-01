@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/main/java/org/example/BasePage.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/org/example/BasePage.java" />
+              <option name="updatedContent" value="package org.example;&#10;&#10;import io.appium.java_client.android.AndroidDriver;&#10;import java.time.Duration;&#10;import org.openqa.selenium.By;&#10;import org.openqa.selenium.WebElement;&#10;import org.openqa.selenium.support.ui.ExpectedConditions;&#10;import org.openqa.selenium.support.ui.WebDriverWait;&#10;&#10;public class BasePage {&#10;&#10;    protected final AndroidDriver driver;&#10;    protected final WebDriverWait wait;&#10;&#10;    public BasePage(AndroidDriver driver) {&#10;        this.driver = driver;&#10;        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));&#10;    }&#10;&#10;    protected WebElement waitForVisible(By by) {&#10;        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));&#10;    }&#10;&#10;    protected void click(By by) {&#10;        waitForVisible(by).click();&#10;    }&#10;&#10;    protected void sendKeys(By by, String text) {&#10;        waitForVisible(by).sendKeys(text);&#10;    }&#10;&#10;    protected void clearAndSendKeys(By by, String text) {&#10;        WebElement element = waitForVisible(by);&#10;        element.clear();&#10;        element.sendKeys(text);&#10;    }&#10;&#10;    protected String getText(By by) {&#10;        return waitForVisible(by).getText();&#10;    }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/pages/EditMatkulPage.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/test/java/pages/EditMatkulPage.java" />
+              <option name="originalContent" value="package pages;&#10;&#10;import io.appium.java_client.android.AndroidDriver;&#10;import org.openqa.selenium.By;&#10;&#10;public class EditMatkulPage {&#10;&#10;    AndroidDriver driver;&#10;&#10;    By menuMatkul = By.id(&quot;menu_matkul&quot;);&#10;    By btnEdit = By.id(&quot;btn_edit&quot;);&#10;    By txtNamaMatkul = By.id(&quot;et_nama_matkul&quot;);&#10;    By btnSimpan = By.id(&quot;btn_simpan&quot;);&#10;&#10;    public EditMatkulPage(AndroidDriver driver){&#10;        this.driver = driver;&#10;    }&#10;&#10;    public void bukaHalamanMatkul(){&#10;        driver.findElement(menuMatkul).click();&#10;    }&#10;&#10;    public void klikEdit(){&#10;        driver.findElement(btnEdit).click();&#10;    }&#10;&#10;    public void ubahNamaMatkul(String nama){&#10;        driver.findElement(txtNamaMatkul).clear();&#10;        driver.findElement(txtNamaMatkul).sendKeys(nama);&#10;    }&#10;&#10;    public void simpanPerubahan(){&#10;        driver.findElement(btnSimpan).click();&#10;    }&#10;}" />
+              <option name="updatedContent" value="package pages;&#10;&#10;import io.appium.java_client.android.AndroidDriver;&#10;import org.example.BasePage;&#10;import org.example.locators.MatkulLocators;&#10;&#10;public class EditMatkulPage extends BasePage {&#10;&#10;    public EditMatkulPage(AndroidDriver driver) {&#10;        super(driver);&#10;    }&#10;&#10;    public void bukaHalamanMatkul() {&#10;        click(MatkulLocators.MENU_MATKUL);&#10;    }&#10;&#10;    public void klikEdit() {&#10;        click(MatkulLocators.BTN_EDIT);&#10;    }&#10;&#10;    public void ubahNamaMatkul(String nama) {&#10;        clearAndSendKeys(MatkulLocators.INPUT_NAMA, nama);&#10;    }&#10;&#10;    public void simpanPerubahan() {&#10;        click(MatkulLocators.BTN_SIMPAN);&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/pages/TambahMatkulPage.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/test/java/pages/TambahMatkulPage.java" />
+              <option name="originalContent" value="package pages;&#10;&#10;public class TambahMatkulPage {&#10;&#10;}&#10;" />
+              <option name="updatedContent" value="package pages;&#10;&#10;import io.appium.java_client.android.AndroidDriver;&#10;import org.example.BasePage;&#10;import org.example.locators.MatkulLocators;&#10;&#10;public class TambahMatkulPage extends BasePage {&#10;&#10;    public TambahMatkulPage(AndroidDriver driver) {&#10;        super(driver);&#10;    }&#10;&#10;    public void bukaHalamanDaftarMatkul() {&#10;        click(MatkulLocators.MENU_MATKUL);&#10;    }&#10;&#10;    public void klikTambah() {&#10;        click(MatkulLocators.BTN_TAMBAH);&#10;    }&#10;&#10;    public void isiNamaMatkul(String nama) {&#10;        sendKeys(MatkulLocators.INPUT_NAMA, nama);&#10;    }&#10;&#10;    public void isiKodeMatkul(String kode) {&#10;        sendKeys(MatkulLocators.INPUT_KODE, kode);&#10;    }&#10;&#10;    public void isiSks(String sks) {&#10;        sendKeys(MatkulLocators.INPUT_SKS, sks);&#10;    }&#10;&#10;    public void klikSimpan() {&#10;        click(MatkulLocators.BTN_SIMPAN);&#10;    }&#10;&#10;    public String ambilPesanAlert() {&#10;        return getText(MatkulLocators.ALERT_MESSAGE);&#10;    }&#10;&#10;    public void tutupAlertSukses() {&#10;        click(MatkulLocators.ALERT_OK);&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/runners/TestRunnerAdd.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/test/java/runners/TestRunnerAdd.java" />
+              <option name="updatedContent" value="package runners;&#10;&#10;import io.cucumber.junit.Cucumber;&#10;import io.cucumber.junit.CucumberOptions;&#10;import org.junit.runner.RunWith;&#10;&#10;@RunWith(Cucumber.class)&#10;@CucumberOptions(&#10;        features = &quot;src/test/resources/add_matkul.feature&quot;,&#10;        glue = {&quot;stepDef&quot;},&#10;        plugin = {&#10;                &quot;pretty&quot;,&#10;                &quot;html:target/cucumber-report-add.html&quot;,&#10;                &quot;json:target/cucumber-add.json&quot;&#10;        },&#10;        monochrome = true&#10;)&#10;public class TestRunnerAdd {&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/stepDef/AddMatkulSteps.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/test/java/stepDef/AddMatkulSteps.java" />
+              <option name="updatedContent" value="package stepDef;&#10;&#10;import io.cucumber.java.en.Given;&#10;import io.cucumber.java.en.Then;&#10;import io.cucumber.java.en.When;&#10;import org.junit.Assert;&#10;import pages.TambahMatkulPage;&#10;&#10;public class AddMatkulSteps {&#10;&#10;    TambahMatkulPage tambahMatkulPage;&#10;&#10;    @Given(&quot;Admin sudah berada di halaman daftar mata kuliah&quot;)&#10;    public void adminBeradaDiHalamanDaftarMatkul() {&#10;        tambahMatkulPage.bukaHalamanDaftarMatkul();&#10;    }&#10;&#10;    @When(&quot;Admin mengeklik tombol tambah {string}&quot;)&#10;    public void adminKlikTombolTambah(String tombolTambah) {&#10;        tambahMatkulPage.klikTambah();&#10;    }&#10;&#10;    @When(&quot;Admin memasukkan nama mata kuliah {string}&quot;)&#10;    public void adminMasukkanNamaMatkul(String nama) {&#10;        tambahMatkulPage.isiNamaMatkul(nama);&#10;    }&#10;&#10;    @When(&quot;Admin memasukkan kode mata kuliah {string}&quot;)&#10;    public void adminMasukkanKodeMatkul(String kode) {&#10;        tambahMatkulPage.isiKodeMatkul(kode);&#10;    }&#10;&#10;    @When(&quot;Admin memasukkan jumlah SKS {string}&quot;)&#10;    public void adminMasukkanSks(String sks) {&#10;        tambahMatkulPage.isiSks(sks);&#10;    }&#10;&#10;    @When(&quot;Admin mengeklik tombol {string}&quot;)&#10;    public void adminKlikTombolSimpan(String tombolSimpan) {&#10;        tambahMatkulPage.klikSimpan();&#10;    }&#10;&#10;    @Then(&quot;Sistem harus menampilkan alert sukses dengan pesan {string}&quot;)&#10;    public void sistemTampilkanAlertSukses(String pesan) {&#10;        Assert.assertEquals(pesan, tambahMatkulPage.ambilPesanAlert());&#10;    }&#10;&#10;    @Then(&quot;Admin mengeklik OK untuk menutup alert sukses&quot;)&#10;    public void adminTutupAlertSukses() {&#10;        tambahMatkulPage.tutupAlertSukses();&#10;    }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

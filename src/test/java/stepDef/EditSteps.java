@@ -1,11 +1,12 @@
 package stepDef;
 
 import io.cucumber.java.en.When;
+import org.example.utils.DriverManager;
 import pages.EditMatkulPage;
 
 public class EditSteps {
 
-    EditMatkulPage editPage;
+    EditMatkulPage editPage = new EditMatkulPage(DriverManager.getDriver());
 
     @When("admin membuka halaman mata kuliah")
     public void bukaHalamanMatkul() {
