@@ -1,35 +1,28 @@
 package pages;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
+import org.example.BasePage;
+import org.example.locators.MatkulLocators;
 
-public class EditMatkulPage {
+public class EditMatkulPage extends BasePage {
 
-    AndroidDriver driver;
-
-    By menuMatkul = By.id("menu_matkul");
-    By btnEdit = By.id("btn_edit");
-    By txtNamaMatkul = By.id("et_nama_matkul");
-    By btnSimpan = By.id("btn_simpan");
-
-    public EditMatkulPage(AndroidDriver driver){
-        this.driver = driver;
+    public EditMatkulPage(AndroidDriver driver) {
+        super(driver);
     }
 
-    public void bukaHalamanMatkul(){
-        driver.findElement(menuMatkul).click();
+    public void bukaHalamanMatkul() {
+        click(MatkulLocators.MENU_MATKUL);
     }
 
-    public void klikEdit(){
-        driver.findElement(btnEdit).click();
+    public void klikEdit() {
+        click(MatkulLocators.BTN_EDIT);
     }
 
-    public void ubahNamaMatkul(String nama){
-        driver.findElement(txtNamaMatkul).clear();
-        driver.findElement(txtNamaMatkul).sendKeys(nama);
+    public void ubahNamaMatkul(String nama) {
+        clearAndSendKeys(MatkulLocators.INPUT_NAMA, nama);
     }
 
-    public void simpanPerubahan(){
-        driver.findElement(btnSimpan).click();
+    public void simpanPerubahan() {
+        click(MatkulLocators.BTN_SIMPAN);
     }
 }
