@@ -8,6 +8,32 @@ This project runs Appium-based BDD tests with Cucumber for a React Native Androi
 2. Connect an Android device or start an emulator.
 3. Run tests with your desired configuration overrides.
 
+## Teammate setup checklist (after git clone)
+
+System prerequisites:
+- Install Node.js (needed for `npm`).
+- Install Android SDK + set `ANDROID_HOME` and `PATH` for `adb`.
+- Ensure a device or emulator is available and visible to `adb`.
+
+Appium installation (run once):
+
+```powershell
+npm install -g appium
+appium driver install uiautomator2
+```
+
+Device preparation:
+- Enable Developer Options and USB Debugging on the phone.
+- Install the React Native app APK on the device.
+- Verify device is detected:
+
+```powershell
+adb devices
+```
+
+Optional configuration overrides (if app package/activity or device name differ):
+- `APP_PACKAGE`, `APP_ACTIVITY`, `APP_WAIT_ACTIVITY`, `DEVICE_NAME`, `APPIUM_SERVER_URL`
+
 ## Configuration overrides
 
 The driver reads values from system properties or environment variables:

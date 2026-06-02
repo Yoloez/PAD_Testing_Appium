@@ -12,8 +12,8 @@ public class DriverManager {
     public static AndroidDriver getDriver() {
         if (driver == null) {
             try {
-                String appPackage = readConfig("APP_PACKAGE", "com.namaproyek.kamu");
-                String appActivity = readConfig("APP_ACTIVITY", "com.namaproyek.kamu.MainActivity");
+                String appPackage = readConfig("APP_PACKAGE", "com.hananfijananto.cobanativewind");
+                String appActivity = readConfig("APP_ACTIVITY", "com.hananfijananto.cobanativewind.MainActivity");
                 String deviceName = readConfig("DEVICE_NAME", "Laptop_ASUS_Hanan");
                 String appiumServerUrl = readConfig("APPIUM_SERVER_URL", "http://127.0.0.1:4723");
                 String appWaitActivity = readConfig("APP_WAIT_ACTIVITY", "");
