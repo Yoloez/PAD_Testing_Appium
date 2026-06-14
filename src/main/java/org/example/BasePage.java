@@ -2,6 +2,7 @@ package org.example;
 
 import io.appium.java_client.android.AndroidDriver;
 import java.time.Duration;
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,5 +39,13 @@ public class BasePage {
     protected String getText(By by) {
         return waitForVisible(by).getText();
     }
-}
 
+    protected boolean isDisplayed(By by) {
+        try {
+            List<WebElement> elements = driver.findElements(by);
+            return !elements.isEmpty() && elements.get(0).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}
