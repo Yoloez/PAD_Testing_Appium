@@ -7,7 +7,7 @@ Feature: Menghapus Mata Kuliah oleh Admin
   Background:
     Given Admin sudah login dan berada di halaman daftar mata kuliah
 
-@PositiveTest
+  @PositiveTest
   Scenario: Admin berhasil menghapus mata kuliah
     When Admin menekan ikon "Sampah" pada matkul dengan ID "1"
     And Admin mengklik tombol konfirmasi Hapus pada pop-up

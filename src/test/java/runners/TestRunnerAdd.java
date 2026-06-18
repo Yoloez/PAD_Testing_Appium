@@ -1,20 +1,12 @@
 package runners;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.SelectClasspathResource;
+import org.junit.platform.suite.api.Suite;
+//import org.junit.runner.RunWith;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(
-        features = "src/test/resources/add_matkul.feature",
-        glue = {"stepDef"},
-        plugin = {
-                "pretty",
-                "html:target/cucumber-report-add.html",
-                "json:target/cucumber-add.json"
-        },
-        monochrome = true
-)
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("add_matkul.features") // Otomatis menjalankan semua file .feature di folder tersebut
 public class TestRunnerAdd {
 }
-

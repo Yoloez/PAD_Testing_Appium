@@ -5,6 +5,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.net.URI;
 
 public class DriverManager {
     private static AndroidDriver driver;
@@ -14,7 +15,7 @@ public class DriverManager {
             try {
                 String appPackage = readConfig("APP_PACKAGE", "com.hananfijananto.cobanativewind");
                 String appActivity = readConfig("APP_ACTIVITY", "com.hananfijananto.cobanativewind.MainActivity");
-                String deviceName = readConfig("DEVICE_NAME", "Laptop_ASUS_Hanan");
+                String deviceName = readConfig("DEVICE_NAME", "Vivo V2348");
                 String appiumServerUrl = readConfig("APPIUM_SERVER_URL", "http://127.0.0.1:4723");
                 String appWaitActivity = readConfig("APP_WAIT_ACTIVITY", "");
 
@@ -31,7 +32,7 @@ public class DriverManager {
                     options.setAppWaitActivity(appWaitActivity);
                 }
 
-                URL url = new URL(appiumServerUrl);
+                URL url = URI.create(appiumServerUrl).toURL();
                 driver = new AndroidDriver(url, options);
 
                 driver.manage().timeouts().implicitlyWait(Duration.ZERO);
