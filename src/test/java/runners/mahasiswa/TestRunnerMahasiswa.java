@@ -1,4 +1,4 @@
-package runners;
+package runners.mahasiswa;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

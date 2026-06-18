@@ -1,4 +1,4 @@
-package stepDef;
+package stepDef.mataKuliah;
 
 public class DeleteSteps {
 }

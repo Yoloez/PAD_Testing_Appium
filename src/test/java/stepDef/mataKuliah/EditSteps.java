@@ -1,4 +1,4 @@
-package stepDef;
+package stepDef.mataKuliah;
 
 import io.cucumber.java.en.When;
 import org.example.utils.DriverManager;

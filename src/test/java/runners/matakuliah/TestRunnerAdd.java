@@ -1,4 +1,4 @@
-package runners;
+package runners.matakuliah;
 
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
