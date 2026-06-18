@@ -64,3 +64,10 @@ mvn test
 - `src/test/java/runners/TestRunnerAdd.java` runs `add_matkul.feature` only.
 - `src/test/java/runners/TestRunnerEdit.java` runs all features under `src/test/resources`.
 
+## Dependencies (Maven)
+
+This project uses:
+- `io.appium:java-client`
+- `io.cucumber:cucumber-java`
+- `io.cucumber:cucumber-junit`
+- `org.seleniumhq.selenium:selenium-java`

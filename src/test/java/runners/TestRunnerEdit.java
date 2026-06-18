@@ -1,20 +1,11 @@
 package runners;
 
+import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.SelectClasspathResource;
+import org.junit.platform.suite.api.Suite;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
-
-@RunWith(Cucumber.class)
-@CucumberOptions(
-        features = "src/test/resources",
-        glue = {"stepDef"},
-        plugin = {
-                "pretty",
-                "html:target/cucumber-report.html",
-                "json:target/cucumber.json"
-        },
-        monochrome = true
-)
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("edit_subject.feature") // <--- Tinggal arahkan ke file edit-mu
 public class TestRunnerEdit {
 }
