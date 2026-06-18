@@ -1,4 +1,4 @@
-package stepDef;
+package stepDef.mahasiswa;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;

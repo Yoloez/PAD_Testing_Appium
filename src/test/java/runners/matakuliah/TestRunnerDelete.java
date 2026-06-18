@@ -1,4 +1,4 @@
-package runners;
+package runners.matakuliah;
 
 public class TestRunnerDelete {
 }
