@@ -5,7 +5,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.utils.DriverManager;
-import org.junit.Assert;
+
+// Impor JUnit 5 yang benar
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import pages.ListMahasiswaPage;
 import pages.TambahMahasiswaPage;
 
@@ -28,11 +31,11 @@ public class MahasiswaSteps {
         tambahMahasiswaPage.pilihMenuTambahMahasiswa();
     }
 
-
     @Given("admin berada di halaman List Mahasiswa")
     public void admin_berada_di_halaman_list_mahasiswa() {
-        Assert.assertTrue("Halaman List Mahasiswa tidak tampil",
-                listMahasiswaPage.halamanListMahasiswaTampil());
+        // Perhatikan: pesan error dipindah ke parameter kedua
+        assertTrue(listMahasiswaPage.halamanListMahasiswaTampil(),
+                "Halaman List Mahasiswa tidak tampil");
     }
 
     @When("admin menekan tombol Tambah Mahasiswa pada halaman list")
@@ -42,8 +45,8 @@ public class MahasiswaSteps {
 
     @Then("admin kembali ke halaman List Mahasiswa")
     public void admin_kembali_ke_halaman_list_mahasiswa() {
-        Assert.assertTrue("Halaman List Mahasiswa tidak tampil setelah klik Back",
-                listMahasiswaPage.halamanListMahasiswaTampil());
+        assertTrue(listMahasiswaPage.halamanListMahasiswaTampil(),
+                "Halaman List Mahasiswa tidak tampil setelah klik Back");
     }
 
     @When("admin mengisi form tambah mahasiswa dengan data berikut:")
@@ -71,14 +74,14 @@ public class MahasiswaSteps {
 
     @Then("mahasiswa baru berhasil ditambahkan")
     public void mahasiswa_baru_berhasil_ditambahkan() {
-        Assert.assertTrue("Halaman List Mahasiswa tidak tampil setelah menyimpan data mahasiswa baru",
-                listMahasiswaPage.halamanListMahasiswaTampil());
+        assertTrue(listMahasiswaPage.halamanListMahasiswaTampil(),
+                "Halaman List Mahasiswa tidak tampil setelah menyimpan data mahasiswa baru");
     }
 
     @Then("admin tetap berada di halaman Tambah Mahasiswa")
     public void admin_tetap_berada_di_halaman_tambah_mahasiswa() {
-        Assert.assertTrue("Halaman Tambah Mahasiswa tidak tampil, kemungkinan validasi gagal diproses",
-                tambahMahasiswaPage.halamanTambahMahasiswaTampil());
+        assertTrue(tambahMahasiswaPage.halamanTambahMahasiswaTampil(),
+                "Halaman Tambah Mahasiswa tidak tampil, kemungkinan validasi gagal diproses");
     }
 
     @When("admin menekan tombol Aktifkan pada mahasiswa dengan id {string}")
@@ -95,15 +98,13 @@ public class MahasiswaSteps {
 
     @Then("status mahasiswa berubah menjadi aktif")
     public void status_mahasiswa_berubah_menjadi_aktif() {
-        Assert.assertTrue(
-                "Tombol Nonaktifkan tidak muncul, status mahasiswa belum berubah menjadi aktif",
-                listMahasiswaPage.tombolNonaktifkanTampil(idUserSiTerakhir));
+        assertTrue(listMahasiswaPage.tombolNonaktifkanTampil(idUserSiTerakhir),
+                "Tombol Nonaktifkan tidak muncul, status mahasiswa belum berubah menjadi aktif");
     }
 
     @Then("status mahasiswa berubah menjadi nonaktif")
     public void status_mahasiswa_berubah_menjadi_nonaktif() {
-        Assert.assertTrue(
-                "Tombol Aktifkan tidak muncul, status mahasiswa belum berubah menjadi nonaktif",
-                listMahasiswaPage.tombolAktifkanTampil(idUserSiTerakhir));
+        assertTrue(listMahasiswaPage.tombolAktifkanTampil(idUserSiTerakhir),
+                "Tombol Aktifkan tidak muncul, status mahasiswa belum berubah menjadi nonaktif");
     }
 }
