@@ -6,7 +6,7 @@ import io.cucumber.java.en.When;
 import org.example.utils.DriverManager;
 //import org.junit.Assert;
 import org.testng.Assert;
-import pages.TambahMatkulPage;
+import pages.matakuliah.TambahMatkulPage;
 
 public class AddMatkulSteps {
 

@@ -2,7 +2,7 @@ package stepDef.mataKuliah;
 
 import io.cucumber.java.en.When;
 import org.example.utils.DriverManager;
-import pages.EditMatkulPage;
+import pages.matakuliah.EditMatkulPage;
 
 public class EditSteps {
 

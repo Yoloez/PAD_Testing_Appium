@@ -8,5 +8,5 @@ import org.junit.platform.suite.api.Suite;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("add_matkul.features") // Otomatis menjalankan semua file .feature di folder tersebut
-public class TestRunnerAdd {
+public class TestRunnerMataKuliah {
 }
