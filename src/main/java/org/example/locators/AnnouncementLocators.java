@@ -10,7 +10,8 @@ public class AnnouncementLocators {
     public static final By INPUT_MESSAGE_PENGUMUMAN = AppiumBy.accessibilityId("input-message-pengumuman");
     public static final By BTN_SUBMIT_PENGUMUMAN = AppiumBy.accessibilityId("btn-submit-pengumuman");
     // Tambahkan di bagian bawah file locators kamu
-    public static final By ALERT_OK = AppiumBy.id("android:id/button1");
+//    public static final By ALERT_OK = AppiumBy.id("android:id/button1");
+    public static final By ALERT_OK = AppiumBy.androidUIAutomator("new UiSelector().text(\"OK\")");
 
     // --- HALAMAN CEK PENGUMUMAN (MAHASISWA) ---
     public static final By BTN_NOTIFICATION = AppiumBy.accessibilityId("btn-notification");

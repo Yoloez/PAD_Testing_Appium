@@ -7,6 +7,7 @@ Feature: Alur Distribusi Pengumuman
     And manager mengisi pesan pengumuman dengan "Perkuliahan diliburkan mulai minggu depan."
     And manager menekan tombol submit pengumuman
     Then sistem berhasil menyimpan pengumuman baru
+    Then sistem kembali ke halaman dashboard manager
 
     # --- FLOW MAHASISWA ---
     Given mahasiswa melakukan login dan membuka halaman pemberitahuan

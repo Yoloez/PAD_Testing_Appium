@@ -1,13 +1,14 @@
 package runners.pengumuman;
 
+import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
 import org.junit.platform.suite.api.Suite;
+import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 
 @Suite
 @IncludeEngines("cucumber")
-// Langsung arahkan ke folder pengumuman di dalam resources
 @SelectClasspathResource("pengumuman")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-reports.html")
 public class TestRunnerPengumuman {
-    // Kosongkan saja, pengaturan 'glue' (stepDef) otomatis dibaca dari cucumber.properties
 }

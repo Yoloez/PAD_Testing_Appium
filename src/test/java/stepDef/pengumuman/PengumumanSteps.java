@@ -37,16 +37,36 @@ public class PengumumanSteps {
 
     @Then("sistem berhasil menyimpan pengumuman baru")
     public void sistemBerhasilMenyimpanPengumumanBaru() {
+        announcementPage.clickAlertOk();
         System.out.println("LOG: Pengumuman berhasil disimpan oleh Manager!");
     }
+
+    @Then("sistem kembali ke halaman dashboard manager")
+    public void balikKeDashboard() {
+        announcementPage.clickBackManager();
+        System.out.println("LOG: Pengumuman berhasil disimpan oleh Manager!");
+    }
+
 
     // ================= FLOW MAHASISWA =================
 
     @Given("mahasiswa melakukan login dan membuka halaman pemberitahuan")
     public void mahasiswaMelakukanLoginDanMembukaHalamanPemberitahuan() {
-        System.out.println("LOG: Proses relogin ke akun Mahasiswa...");
-        // Di sini nanti kamu bisa memanggil step/fungsi logout dari Manager
-        // lalu memanggil fungsi login sebagai Mahasiswa.
+        System.out.println("LOG: Memulai proses relogin ke akun Mahasiswa...");
+
+        // 2. Manager membuka menu dan melakukan logout
+        announcementPage.openMenuAndLogout();
+
+        // 3. Login ulang menggunakan akun Mahasiswa Handoko
+        announcementPage.loginSebagai("handoko@gmail.com", "hanan123");
+
+        // Note: Kita beri jeda sedikit atau tunggu elemen dashboard mahasiswa muncul
+        // agar Appium tidak buru-buru mengeklik tombol notifikasi saat layar masih loading login
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @When("mahasiswa mengeklik tombol lihat pengumuman")

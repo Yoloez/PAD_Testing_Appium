@@ -1,6 +1,8 @@
 package pages.pengumuman;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.example.locators.DashboardLocators;
+import org.example.locators.LoginLocators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,8 +39,50 @@ public class AnnouncementPage {
         wait.until(ExpectedConditions.elementToBeClickable(AnnouncementLocators.BTN_SUBMIT_PENGUMUMAN)).click();
     }
 
+    public void clickAlertOk() {
+        try {
+            // Appium akan mencari teks "OK" di layar lalu mengekliknya
+            wait.until(ExpectedConditions.elementToBeClickable(AnnouncementLocators.ALERT_OK)).click();
+            System.out.println("LOG: Berhasil klik alert pakai deteksi teks!");
+        } catch (Exception e) {
+            System.out.println("LOG: Gagal klik alert. Pastikan tulisan teksnya benar persis.");
+        }
+    }
+
     public void clickBackManager() {
         wait.until(ExpectedConditions.elementToBeClickable(AnnouncementLocators.BTN_BACK_PENGUMUMAN)).click();
+    }
+
+    // ================= METHODS RELOGIN & DASHBOARD =================
+
+    public void openMenuAndLogout() {
+        // 1. Klik menu dashboard
+        wait.until(ExpectedConditions.elementToBeClickable(DashboardLocators.BTN_OPEN_MENU)).click();
+
+        // 2. Klik tombol logout di dalam menu
+        wait.until(ExpectedConditions.elementToBeClickable(DashboardLocators.BTN_LOGOUT)).click();
+
+        // 3. Konfirmasi alert logout (menekan teks "Logout")
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(DashboardLocators.ALERT_LOGOUT)).click();
+            System.out.println("LOG: Berhasil logout dari akun Manager.");
+        } catch (Exception e) {
+            System.out.println("LOG: Alert logout tidak muncul atau teksnya beda.");
+        }
+    }
+
+    public void loginSebagai(String email, String password) {
+        // Tunggu halaman login muncul dengan mengecek keberadaan input email
+        WebElement fieldEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(LoginLocators.INPUT_EMAIL));
+        fieldEmail.clear();
+        fieldEmail.sendKeys(email);
+
+        WebElement fieldPass = wait.until(ExpectedConditions.visibilityOfElementLocated(LoginLocators.INPUT_PASSWORD));
+        fieldPass.clear();
+        fieldPass.sendKeys(password);
+
+        wait.until(ExpectedConditions.elementToBeClickable(LoginLocators.BTN_LOGIN)).click();
+        System.out.println("LOG: Sedang login dengan email: " + email);
     }
 
     // ================= METHODS MAHASISWA =================
