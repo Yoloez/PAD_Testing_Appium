@@ -1,24 +1,31 @@
 package org.example.locators;
 
-import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 
-public final class MatkulLocators {
+public class MatkulLocators {
+    // === LOCATOR UTAMA / MENU ===
+    public static final By MENU_MATKUL = By.id("menu-item-tambah-mata-kuliah");
 
-    // Menggunakan accessibilityId karena jauh lebih stabil untuk React Native
-    public static final By MENU_MATKUL = AppiumBy.accessibilityId("menu_matkul");
-    public static final By BTN_TAMBAH = AppiumBy.accessibilityId("btn_add");
-    public static final By INPUT_NAMA = AppiumBy.accessibilityId("input-name-create-subject");
-    public static final By INPUT_KODE = AppiumBy.accessibilityId("input-code-create-subject");
-    public static final By INPUT_SKS = AppiumBy.accessibilityId("input-sks-create-subject");
-    public static final By BTN_SIMPAN = AppiumBy.accessibilityId("btn-save-create-subject");
-    public static final By BTN_EDIT = AppiumBy.accessibilityId("btn_edit");
+    // === LOCATOR TAMBAH MATKUL ===
+    public static final By BTN_TAMBAH = By.id("btn-go-add-subject");
+    public static final By BTN_BACK = By.id("btn-back-create-subject");
+    public static final By INPUT_NAMA = By.id("input-name-create-subject");
+    public static final By INPUT_KODE = By.id("input-code-create-subject");
+    public static final By INPUT_SKS = By.id("input-sks-create-subject");
+    public static final By BTN_SIMPAN = By.id("btn-save-create-subject");
 
-    // Khusus untuk Alert bawaan sistem Android (Native Dialog)
-    public static final By ALERT_MESSAGE = AppiumBy.id("android:id/message");
-    public static final By ALERT_OK = AppiumBy.id("android:id/button1");
+    // === LOCATOR EDIT MATKUL ===
+    public static final By BTN_EDIT = By.xpath("//*[contains(@id,'btn-edit-')]");
+    public static final By INPUT_NAMA_EDIT = By.id("input-name-edit-subject");
+    public static final By INPUT_KODE_EDIT = By.id("input-code-edit-subject");
+    public static final By INPUT_SKS_EDIT = By.id("input-sks-edit-subject");
+    public static final By BTN_SIMPAN_EDIT = By.id("btn-save-edit-subject");
 
-    private MatkulLocators() {
-        // Mencegah instansiasi kelas utility
+    // === LOCATOR DELETE MATKUL ===
+    public static By BTN_DELETE(String idMatkul) {
+        return By.id("btn-delete-" + idMatkul);
     }
+    // === SYSTEM ALERT DIALOG (Bawaan Android) ===
+    public static final By ALERT_MESSAGE = By.id("android:id/message");
+    public static final By ALERT_OK = By.id("android:id/button1");
 }

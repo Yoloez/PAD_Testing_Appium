@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
 
-    protected final AndroidDriver driver;
+    public static AndroidDriver driver;
     protected final WebDriverWait wait;
 
     public BasePage(AndroidDriver driver) {
