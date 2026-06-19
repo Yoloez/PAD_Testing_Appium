@@ -3,13 +3,11 @@ import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 
 public class AnnouncementLocators {
-
     // --- HALAMAN BUAT PENGUMUMAN (MANAGER) ---
     public static final By BTN_BACK_PENGUMUMAN = AppiumBy.accessibilityId("btn-back-pengumuman");
     public static final By INPUT_TITLE_PENGUMUMAN = AppiumBy.accessibilityId("input-title-pengumuman");
     public static final By INPUT_MESSAGE_PENGUMUMAN = AppiumBy.accessibilityId("input-message-pengumuman");
     public static final By BTN_SUBMIT_PENGUMUMAN = AppiumBy.accessibilityId("btn-submit-pengumuman");
-
 
     // --- ALERT ---
     public static final By ALERT_OK = AppiumBy.androidUIAutomator("new UiSelector().text(\"OK\")");

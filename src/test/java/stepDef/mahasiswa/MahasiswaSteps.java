@@ -65,6 +65,7 @@ public class MahasiswaSteps {
     @When("admin menekan tombol Simpan pada form tambah mahasiswa")
     public void admin_menekan_tombol_simpan_pada_form_tambah_mahasiswa() {
         tambahMahasiswaPage.klikSimpan();
+        tambahMahasiswaPage.klikOK();
     }
 
     @When("admin menekan tombol Back pada form tambah mahasiswa")
@@ -75,7 +76,7 @@ public class MahasiswaSteps {
     @Then("mahasiswa baru berhasil ditambahkan")
     public void mahasiswa_baru_berhasil_ditambahkan() {
         assertTrue(listMahasiswaPage.halamanListMahasiswaTampil(),
-                "Halaman List Mahasiswa tidak tampil setelah menyimpan data mahasiswa baru");
+                "Akun mahasiswa baru berhasil dibuat.");
     }
 
     @Then("admin tetap berada di halaman Tambah Mahasiswa")

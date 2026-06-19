@@ -2,85 +2,109 @@ package pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.example.locators.LecturerLocators;
+
+import java.time.Duration;
 
 public class LecturerPage {
 
     AndroidDriver driver;
+    WebDriverWait wait;
 
     public LecturerPage(AndroidDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-    // Menu
-    By menuTambahDosen = By.id("menu-item-tambah-dosen");
+    protected void click(By by) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        wait.until(ExpectedConditions.elementToBeClickable(by)).click();
+    }
 
-    // Form Tambah Dosen
-    By inputNama = By.id("input-name-create-lecturer");
-    By inputUsername = By.id("input-username-create-lecturer");
-    By inputEmail = By.id("input-email-create-lecturer");
-    By inputProgramStudi = By.id("input-program-create-lecturer");
-    By inputPassword = By.id("input-password-create-lecturer");
-    By inputKonfirmasiPassword = By.id("input-password-conf-create-lecturer");
+    protected void sendKeys(By by, String text) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by)).sendKeys(text);
+    }
 
-    By btnSave = By.id("btn-save-create-lecturer");
+    // --- Method Aksi Otomatis ---
+    public void melakukanLogin(String email, String password) {
+        sendKeys(LecturerLocators.INPUT_EMAIL_LOGIN, email);
+        sendKeys(LecturerLocators.INPUT_PASSWORD_LOGIN, password);
+        click(LecturerLocators.BTN_LOGIN);
+    }
+
+    public void bukaSidebarMenu() {
+        click(LecturerLocators.BTN_OPEN_MENU);
+    }
+
+    public void klikTambahDosen() {
+        click(LecturerLocators.BTN_ADD_DOSEN);
+    }
 
     public void bukaMenuTambahDosen() {
-        driver.findElement(menuTambahDosen).click();
+        click(LecturerLocators.MENU_TAMBAH_DOSEN);
     }
 
     public void inputNama(String nama) {
-        driver.findElement(inputNama).sendKeys(nama);
+        sendKeys(LecturerLocators.INPUT_NAMA, nama);
     }
 
     public void inputUsername(String username) {
-        driver.findElement(inputUsername).sendKeys(username);
+        sendKeys(LecturerLocators.INPUT_USERNAME, username);
     }
 
     public void inputEmail(String email) {
-        driver.findElement(inputEmail).sendKeys(email);
+        sendKeys(LecturerLocators.INPUT_EMAIL, email);
+    }
+
+    public void klikOK() {
+        click(LecturerLocators.BTN_OK);
     }
 
     public void inputProgramStudi(String programStudi) {
-        driver.findElement(inputProgramStudi).sendKeys(programStudi);
+        click(LecturerLocators.INPUT_PROGRAM_STUDI);
+        
+        // Tunggu sebentar sampai dialog native muncul
+        try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
+        
+        // Pilih opsi pertama dari dropdown menggunakan class CheckedTextView bawaan Android
+        click(io.appium.java_client.AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.CheckedTextView\").instance(1)"));
     }
 
     public void inputPassword(String password) {
-        driver.findElement(inputPassword).sendKeys(password);
+        sendKeys(LecturerLocators.INPUT_PASSWORD, password);
     }
 
     public void inputKonfirmasiPassword(String password) {
-        driver.findElement(inputKonfirmasiPassword).sendKeys(password);
+        sendKeys(LecturerLocators.INPUT_PASSWORD_CONF, password);
     }
 
     public void klikSimpan() {
-        driver.findElement(btnSave).click();
-    }
-    public void klikAktifkan(String idUser) {
-        driver.findElement(
-                By.id("btn-activate-" + idUser)
-        ).click();
+        click(LecturerLocators.BTN_SAVE);
     }
 
-    public void klikNonaktifkan(String idUser) {
-        driver.findElement(
-                By.id("btn-deactivate-" + idUser)
-        ).click();
+    public void klikAktifkan(int idUser) {
+        click(LecturerLocators.getBtnActivate(idUser));
     }
 
-    public void tambahDosen(
-            String nama,
-            String username,
-            String email,
-            String programStudi,
-            String password,
-            String konfirmasiPassword
-    ) {
-        inputNama(nama);
-        inputUsername(username);
-        inputEmail(email);
-        inputProgramStudi(programStudi);
-        inputPassword(password);
-        inputKonfirmasiPassword(konfirmasiPassword);
-        klikSimpan();
+    public void klikNonaktifkan(int idUser) {
+        click(LecturerLocators.getBtnDeactivate(idUser));
+    }
+
+    public void bukaMenuListDosen() {
+        click(LecturerLocators.MENU_TAMBAH_DOSEN); // Sesuai dengan instruksi
+    }
+
+    public void klikAktifkanDosen() {
+        klikAktifkan(18);
+    }
+
+    public void klikNonaktifkan() {
+        klikNonaktifkan(18);
+    }
+
+    public void klikUbahStatusDosen() {
+        click(LecturerLocators.BTN_UBAH_STATUS_DOSEN);
     }
 }

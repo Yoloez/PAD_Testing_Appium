@@ -3,6 +3,7 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import org.example.BasePage;
 import org.example.locators.MahasiswaLocators;
+import org.example.locators.MatkulLocators;
 
 public class TambahMahasiswaPage extends BasePage {
 
@@ -65,6 +66,10 @@ public class TambahMahasiswaPage extends BasePage {
 
     public void klikBack() {
         click(MahasiswaLocators.BTN_BACK_CREATE_STUDENT);
+    }
+
+    public void klikOK() {
+        click(MatkulLocators.ALERT_OK);
     }
 
     public void tambahMahasiswaBaru(String nama, String username, String email,

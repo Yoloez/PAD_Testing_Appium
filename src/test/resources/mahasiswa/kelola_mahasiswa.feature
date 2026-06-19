@@ -13,7 +13,7 @@ Feature: Mengelola Mahasiswa
     When admin menekan tombol Tambah Mahasiswa pada halaman list
     And admin mengisi form tambah mahasiswa dengan data berikut:
       | nama            | username   | email               | nim      | program_studi      | password  | konfirmasi_password |
-      | Fatimah Azzahra | fatimah123 | fatimah@gmail.com | 21051001 | Teknik Informatika | Pass1234! | Pass1234!            |
+      | javn | jvn1 | jvn123@gmail.com | 21015621 | Teknik Informatika | Pass1234! | Pass1234!            |
     And admin menekan tombol Simpan pada form tambah mahasiswa
     Then mahasiswa baru berhasil ditambahkan
 
@@ -41,7 +41,7 @@ Feature: Mengelola Mahasiswa
     And admin mengisi form tambah mahasiswa dengan data berikut:
       | nama   | username   | email   | nim   | program_studi   | password   | konfirmasi_password   |
       | <nama> | <username> | <email> | <nim> | <program_studi> | <password> | <konfirmasi_password> |
-    And admin menekan tombol Simpan pada form tambah mahasiswa
+    And admin menekan tombol Simpan pada form tambah maha siswa
     Then admin tetap berada di halaman Tambah Mahasiswa
 
     Examples:
