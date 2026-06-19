@@ -10,4 +10,5 @@ public class DashboardLocators {
     public static final By BTN_LOGOUT = AppiumBy.accessibilityId("btn-logout");
     // Menggunakan trik XPath pendeteksi teks untuk alert konfirmasi Logout
     public static final By ALERT_LOGOUT = AppiumBy.xpath("//*[@text='Logout']");
+    public static final By MENU_PENGUMUMAN = AppiumBy.accessibilityId("menu-item-buat-pengumuman");
 }

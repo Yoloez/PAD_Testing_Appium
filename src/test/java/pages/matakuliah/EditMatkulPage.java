@@ -1,32 +1,46 @@
 package pages.matakuliah;
 
-import org.example.locators.MatkulLocators;
-import org.example.BasePage; // Sesuaikan import jika berbeda
 import io.appium.java_client.android.AndroidDriver;
+import org.example.locators.MatkulLocators;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class EditMatkulPage extends BasePage {
+import java.time.Duration;
+
+public class EditMatkulPage {
+
+    private final AndroidDriver driver;
+    private final WebDriverWait wait;
 
     public EditMatkulPage(AndroidDriver driver) {
-        super(driver);
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void clickBtnEdit() {
-        driver.findElement(MatkulLocators.BTN_EDIT).click();
+    public void clickBtnEdit(int idMatkul) {
+        wait.until(ExpectedConditions.elementToBeClickable(MatkulLocators.BTN_EDIT(idMatkul))).click();
+        System.out.println("LOG: Tombol Edit mata kuliah ditekan.");
     }
 
     public void editDataMatkul(String namaBaru, String kodeBaru, String sksBaru) {
-        // Hapus data lama terlebih dahulu, lalu masukkan data baru
-        driver.findElement(MatkulLocators.INPUT_NAMA_EDIT).clear();
-        driver.findElement(MatkulLocators.INPUT_NAMA_EDIT).sendKeys(namaBaru);
+        WebElement inputNama = wait.until(ExpectedConditions.visibilityOfElementLocated(MatkulLocators.INPUT_NAMA_EDIT));
+        inputNama.clear();
+        inputNama.sendKeys(namaBaru);
 
-        driver.findElement(MatkulLocators.INPUT_KODE_EDIT).clear();
-        driver.findElement(MatkulLocators.INPUT_KODE_EDIT).sendKeys(kodeBaru);
+        WebElement inputKode = wait.until(ExpectedConditions.visibilityOfElementLocated(MatkulLocators.INPUT_KODE_EDIT));
+        inputKode.clear();
+        inputKode.sendKeys(kodeBaru);
 
-        driver.findElement(MatkulLocators.INPUT_SKS_EDIT).clear();
-        driver.findElement(MatkulLocators.INPUT_SKS_EDIT).sendKeys(sksBaru);
+        WebElement inputSks = wait.until(ExpectedConditions.visibilityOfElementLocated(MatkulLocators.INPUT_SKS_EDIT));
+        inputSks.clear();
+        inputSks.sendKeys(sksBaru);
+
+        System.out.println("LOG: Form edit matkul diisi → " + namaBaru + " | " + kodeBaru + " | SKS " + sksBaru);
     }
 
     public void clickSimpanEdit() {
-        driver.findElement(MatkulLocators.BTN_SIMPAN_EDIT).click();
+        wait.until(ExpectedConditions.elementToBeClickable(MatkulLocators.BTN_SIMPAN_EDIT)).click();
+        System.out.println("LOG: Tombol Simpan Edit ditekan.");
     }
 }

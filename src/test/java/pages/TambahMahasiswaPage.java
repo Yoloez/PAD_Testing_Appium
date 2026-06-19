@@ -10,7 +10,6 @@ public class TambahMahasiswaPage extends BasePage {
         super(driver);
     }
 
-
     public void bukaMenu() {
         click(MahasiswaLocators.BTN_OPEN_MENU);
     }
@@ -19,32 +18,45 @@ public class TambahMahasiswaPage extends BasePage {
         click(MahasiswaLocators.MENU_TAMBAH_MAHASISWA);
     }
 
+    private String parseValue(String val) {
+        return (val == null || val.equals("[empty]")) ? "" : val;
+    }
+
     public void inputNamaLengkap(String nama) {
-        sendKeys(MahasiswaLocators.INPUT_NAME_CREATE_STUDENT, nama);
+        sendKeys(MahasiswaLocators.INPUT_NAME_CREATE_STUDENT, parseValue(nama));
     }
 
     public void inputUsername(String username) {
-        sendKeys(MahasiswaLocators.INPUT_USERNAME_CREATE_STUDENT, username);
+        sendKeys(MahasiswaLocators.INPUT_USERNAME_CREATE_STUDENT, parseValue(username));
     }
 
     public void inputEmail(String email) {
-        sendKeys(MahasiswaLocators.INPUT_EMAIL_CREATE_STUDENT, email);
+        sendKeys(MahasiswaLocators.INPUT_EMAIL_CREATE_STUDENT, parseValue(email));
     }
 
     public void inputNim(String nim) {
-        sendKeys(MahasiswaLocators.INPUT_NIM_CREATE_STUDENT, nim);
+        sendKeys(MahasiswaLocators.INPUT_NIM_CREATE_STUDENT, parseValue(nim));
     }
 
     public void inputProgramStudi(String prodi) {
-        sendKeys(MahasiswaLocators.INPUT_PROGRAM_CREATE_STUDENT, prodi);
+        String finalProdi = parseValue(prodi);
+        if (!finalProdi.isEmpty()) {
+            // Klik dropdown Picker terlebih dahulu
+            click(MahasiswaLocators.INPUT_PROGRAM_CREATE_STUDENT);
+            
+            // Tunggu sebentar sampai dialog native muncul, lalu klik teks opsinya
+            try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
+            
+            click(io.appium.java_client.AppiumBy.androidUIAutomator("new UiSelector().text(\"" + finalProdi + "\")"));
+        }
     }
 
     public void inputPassword(String password) {
-        sendKeys(MahasiswaLocators.INPUT_PASSWORD_CREATE_STUDENT, password);
+        sendKeys(MahasiswaLocators.INPUT_PASSWORD_CREATE_STUDENT, parseValue(password));
     }
 
     public void inputKonfirmasiPassword(String konfirmasiPassword) {
-        sendKeys(MahasiswaLocators.INPUT_PASSWORD_CONF_CREATE_STUDENT, konfirmasiPassword);
+        sendKeys(MahasiswaLocators.INPUT_PASSWORD_CONF_CREATE_STUDENT, parseValue(konfirmasiPassword));
     }
 
     public void klikSimpan() {

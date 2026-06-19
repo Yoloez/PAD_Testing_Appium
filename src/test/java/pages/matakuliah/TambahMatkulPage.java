@@ -1,43 +1,73 @@
 package pages.matakuliah;
 
+import io.appium.java_client.android.AndroidDriver;
+import org.example.locators.DashboardLocators;
 import org.example.locators.MatkulLocators;
-import org.example.BasePage; // Pastikan path import BasePage ini sudah sesuai dengan punyamu
-import io.appium.java_client.android.AndroidDriver; // Ganti import ke AndroidDriver
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TambahMatkulPage extends BasePage {
+import java.time.Duration;
 
-    // 1. Parameter diubah menjadi AndroidDriver agar cocok dengan BasePage
+public class TambahMatkulPage {
+
+    private final AndroidDriver driver;
+    private final WebDriverWait wait;
+
     public TambahMatkulPage(AndroidDriver driver) {
-        super(driver);
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+    // Navigasi: buka menu → pilih menu Mata Kuliah
     public void clickMenuMatkul() {
-        // Asumsi method click() ada di BasePage kamu. Kalau merah juga, ganti jadi:
-        // driver.findElement(MatkulLocators.MENU_MATKUL).click();
-        click(MatkulLocators.MENU_MATKUL);
+        wait.until(ExpectedConditions.elementToBeClickable(DashboardLocators.BTN_OPEN_MENU)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(MatkulLocators.MENU_MATKUL)).click();
+        System.out.println("LOG: Berhasil masuk ke halaman Mata Kuliah.");
     }
 
     public void clickBtnTambah() {
-        click(MatkulLocators.BTN_TAMBAH);
+        wait.until(ExpectedConditions.elementToBeClickable(MatkulLocators.BTN_TAMBAH)).click();
+        System.out.println("LOG: Berhasil klik tombol Tambah Mata Kuliah.");
     }
 
     public void inputDataMatkul(String nama, String kode, String sks) {
-        // 2. Menggunakan method native Appium/Selenium (sendKeys) karena 'type' tidak ada
-        driver.findElement(MatkulLocators.INPUT_NAMA).sendKeys(nama);
-        driver.findElement(MatkulLocators.INPUT_KODE).sendKeys(kode);
-        driver.findElement(MatkulLocators.INPUT_SKS).sendKeys(sks);
+        WebElement inputNama = wait.until(ExpectedConditions.visibilityOfElementLocated(MatkulLocators.INPUT_NAMA));
+        inputNama.clear();
+        inputNama.sendKeys(nama);
+
+        WebElement inputKode = wait.until(ExpectedConditions.visibilityOfElementLocated(MatkulLocators.INPUT_KODE));
+        inputKode.clear();
+        inputKode.sendKeys(kode);
+
+        WebElement inputSks = wait.until(ExpectedConditions.visibilityOfElementLocated(MatkulLocators.INPUT_SKS));
+        inputSks.clear();
+        inputSks.sendKeys(sks);
+
+        System.out.println("LOG: Form tambah matkul diisi → " + nama + " | " + kode + " | SKS " + sks);
     }
 
     public void clickSimpan() {
-        click(MatkulLocators.BTN_SIMPAN);
+        wait.until(ExpectedConditions.elementToBeClickable(MatkulLocators.BTN_SIMPAN)).click();
+        System.out.println("LOG: Tombol Simpan ditekan.");
     }
 
+    // Mengambil teks dari alert — fallback ke androidUIAutomator jika pesan berbeda
     public String getAlertMessage() {
-        // Jika method getText() tidak ada di BasePage, gunakan cara native ini:
-        return driver.findElement(MatkulLocators.ALERT_MESSAGE).getText();
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(MatkulLocators.ALERT_MESSAGE)).getText();
+        } catch (Exception e) {
+            System.out.println("LOG: Gagal membaca teks alert: " + e.getMessage());
+            return "";
+        }
     }
 
     public void clickOkAlert() {
-        click(MatkulLocators.ALERT_OK);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(MatkulLocators.ALERT_OK)).click();
+            System.out.println("LOG: Berhasil klik OK pada alert.");
+        } catch (Exception e) {
+            System.out.println("LOG: Gagal klik OK alert: " + e.getMessage());
+        }
     }
 }

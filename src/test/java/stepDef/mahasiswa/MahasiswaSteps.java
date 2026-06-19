@@ -19,7 +19,7 @@ public class MahasiswaSteps {
     private final TambahMahasiswaPage tambahMahasiswaPage = new TambahMahasiswaPage(DriverManager.getDriver());
     private final ListMahasiswaPage listMahasiswaPage = new ListMahasiswaPage(DriverManager.getDriver());
 
-    private String idUserSiTerakhir;
+    private int idUserSiTerakhir;
 
     @Given("admin membuka menu navigasi")
     public void admin_membuka_menu_navigasi() {
@@ -85,13 +85,13 @@ public class MahasiswaSteps {
     }
 
     @When("admin menekan tombol Aktifkan pada mahasiswa dengan id {string}")
-    public void admin_menekan_tombol_aktifkan_pada_mahasiswa_dengan_id(String idUserSi) {
+    public void admin_menekan_tombol_aktifkan_pada_mahasiswa_dengan_id(int idUserSi) {
         idUserSiTerakhir = idUserSi;
         listMahasiswaPage.aktifkanMahasiswa(idUserSi);
     }
 
     @When("admin menekan tombol Nonaktifkan pada mahasiswa dengan id {string}")
-    public void admin_menekan_tombol_nonaktifkan_pada_mahasiswa_dengan_id(String idUserSi) {
+    public void admin_menekan_tombol_nonaktifkan_pada_mahasiswa_dengan_id(int idUserSi) {
         idUserSiTerakhir = idUserSi;
         listMahasiswaPage.nonaktifkanMahasiswa(idUserSi);
     }

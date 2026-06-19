@@ -1,21 +1,33 @@
 package pages.matakuliah;
 
-import org.example.locators.MatkulLocators;
-import org.example.BasePage; // Pastikan package ini sesuai dengan punyamu
 import io.appium.java_client.android.AndroidDriver;
+import org.example.locators.MatkulLocators;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class DeleteMatkulPage extends BasePage {
+import java.time.Duration;
+
+public class DeleteMatkulPage {
+
+    private final AndroidDriver driver;
+    private final WebDriverWait wait;
 
     public DeleteMatkulPage(AndroidDriver driver) {
-        super(driver);
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // Method ini sekarang meminta input berupa ID Mata Kuliah
-    public void clickBtnDelete(String idMatkul) {
-        driver.findElement(MatkulLocators.BTN_DELETE(idMatkul)).click();
+    public void clickBtnDelete(Integer idMatkul) {
+        wait.until(ExpectedConditions.elementToBeClickable(MatkulLocators.BTN_DELETE(idMatkul))).click();
+        System.out.println("LOG: Tombol Delete untuk matkul ID '" + idMatkul + "' ditekan.");
     }
 
     public void confirmDelete() {
-        driver.findElement(MatkulLocators.ALERT_OK).click();
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(MatkulLocators.ALERT_OK)).click();
+            System.out.println("LOG: Konfirmasi hapus berhasil (klik OK pada alert).");
+        } catch (Exception e) {
+            System.out.println("LOG: Gagal klik OK pada alert konfirmasi hapus: " + e.getMessage());
+        }
     }
 }

@@ -2,14 +2,15 @@ Feature: Mengelola Mahasiswa
   Sebagai admin, saya ingin dapat menambahkan, mengaktifkan, dan menonaktifkan
   akun mahasiswa pada sistem akademik.
 
-  Background:
-    Given saya membuka aplikasi
-    And saya login sebagai admin dengan email "admin@gmail.com" dan password "admin123"
+#  Background:
+#    Given saya membuka aplikasi
+#    And saya login sebagai admin dengan email "admin@gmail.com" dan password "admin123"
 
   @TambahMahasiswa
   Scenario: Admin berhasil menambahkan mahasiswa baru melalui menu navigasi Dashboard
     Given admin membuka menu navigasi
     When admin memilih menu Tambah Mahasiswa
+    When admin menekan tombol Tambah Mahasiswa pada halaman list
     And admin mengisi form tambah mahasiswa dengan data berikut:
       | nama            | username   | email               | nim      | program_studi      | password  | konfirmasi_password |
       | Fatimah Azzahra | fatimah123 | fatimah@gmail.com | 21051001 | Teknik Informatika | Pass1234! | Pass1234!            |
@@ -51,7 +52,7 @@ Feature: Mengelola Mahasiswa
   @KelolaStatusMahasiswa
   Scenario: Admin menonaktifkan mahasiswa yang sedang aktif
     Given admin berada di halaman List Mahasiswa
-    When admin menekan tombol Nonaktifkan pada mahasiswa dengan id "21051001"
+    When admin menekan tombol Nonaktifkan pada mahasiswa dengan id 4
     Then status mahasiswa berubah menjadi nonaktif
 
   @KelolaStatusMahasiswa

@@ -9,6 +9,6 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("pengumuman")
-@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-reports.html")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "utils.PrettyConsolePlugin, html:target/cucumber-reports.html")
 public class TestRunnerPengumuman {
 }

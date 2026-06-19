@@ -1,31 +1,37 @@
 package org.example.locators;
 
+import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 
 public class MatkulLocators {
-    // === LOCATOR UTAMA / MENU ===
-    public static final By MENU_MATKUL = By.id("menu-item-tambah-mata-kuliah");
 
-    // === LOCATOR TAMBAH MATKUL ===
-    public static final By BTN_TAMBAH = By.id("btn-go-add-subject");
-    public static final By BTN_BACK = By.id("btn-back-create-subject");
-    public static final By INPUT_NAMA = By.id("input-name-create-subject");
-    public static final By INPUT_KODE = By.id("input-code-create-subject");
-    public static final By INPUT_SKS = By.id("input-sks-create-subject");
-    public static final By BTN_SIMPAN = By.id("btn-save-create-subject");
+    // === NAVIGASI MENU ===
+    public static final By MENU_MATKUL = AppiumBy.accessibilityId("menu-item-tambah-mata-kuliah");
 
-    // === LOCATOR EDIT MATKUL ===
-    public static final By BTN_EDIT = By.xpath("//*[contains(@id,'btn-edit-')]");
-    public static final By INPUT_NAMA_EDIT = By.id("input-name-edit-subject");
-    public static final By INPUT_KODE_EDIT = By.id("input-code-edit-subject");
-    public static final By INPUT_SKS_EDIT = By.id("input-sks-edit-subject");
-    public static final By BTN_SIMPAN_EDIT = By.id("btn-save-edit-subject");
+    // === TAMBAH MATA KULIAH ===
+    public static final By BTN_TAMBAH       = AppiumBy.accessibilityId("btn-go-add-subject");
+    public static final By BTN_BACK         = AppiumBy.accessibilityId("btn-back-create-subject");
+    public static final By INPUT_NAMA       = AppiumBy.accessibilityId("input-name-create-subject");
+    public static final By INPUT_KODE       = AppiumBy.accessibilityId("input-code-create-subject");
+    public static final By INPUT_SKS        = AppiumBy.accessibilityId("input-sks-create-subject");
+    public static final By BTN_SIMPAN       = AppiumBy.accessibilityId("btn-save-create-subject");
 
-    // === LOCATOR DELETE MATKUL ===
-    public static By BTN_DELETE(String idMatkul) {
-        return By.id("btn-delete-" + idMatkul);
+    // === EDIT MATA KULIAH ===
+    public static By BTN_EDIT(int idMatkul) {
+        return AppiumBy.accessibilityId("btn-edit-" + idMatkul);
     }
-    // === SYSTEM ALERT DIALOG (Bawaan Android) ===
-    public static final By ALERT_MESSAGE = By.id("android:id/message");
-    public static final By ALERT_OK = By.id("android:id/button1");
+    public static final By INPUT_NAMA_EDIT  = AppiumBy.accessibilityId("input-name-edit-subject");
+    public static final By INPUT_KODE_EDIT  = AppiumBy.accessibilityId("input-code-edit-subject");
+    public static final By INPUT_SKS_EDIT   = AppiumBy.accessibilityId("input-sks-edit-subject");
+    public static final By BTN_SIMPAN_EDIT  = AppiumBy.accessibilityId("btn-save-edit-subject");
+
+    // === DELETE MATA KULIAH ===
+    public static By BTN_DELETE(int idMatkul) {
+        return AppiumBy.accessibilityId("btn-delete-" + idMatkul);
+    }
+
+    // === ALERT DIALOG ===
+    // Menggunakan androidUIAutomator agar handal (sama seperti AnnouncementLocators)
+    public static final By ALERT_OK = AppiumBy.id("android:id/button1");
+    public static final By ALERT_MESSAGE = AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Berhasil\")");
 }

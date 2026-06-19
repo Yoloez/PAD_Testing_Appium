@@ -10,11 +10,11 @@ public class MahasiswaLocators {
 
     public static final By BTN_GO_ADD_STUDENT = AppiumBy.accessibilityId("btn-go-add-student");
 
-    public static By btnActivate(String idUserSi) {
+    public static By btnActivate(int idUserSi) {
         return AppiumBy.accessibilityId("btn-activate-" + idUserSi);
     }
 
-    public static By btnDeactivate(String idUserSi) {
+    public static By btnDeactivate(int idUserSi) {
         return AppiumBy.accessibilityId("btn-deactivate-" + idUserSi);
     }
 

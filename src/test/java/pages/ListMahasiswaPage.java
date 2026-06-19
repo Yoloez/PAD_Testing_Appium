@@ -14,19 +14,19 @@ public class ListMahasiswaPage extends BasePage {
         click(MahasiswaLocators.BTN_GO_ADD_STUDENT);
     }
 
-    public void aktifkanMahasiswa(String idUserSi) {
+    public void aktifkanMahasiswa(int idUserSi) {
         click(MahasiswaLocators.btnActivate(idUserSi));
     }
 
-    public void nonaktifkanMahasiswa(String idUserSi) {
+    public void nonaktifkanMahasiswa(int idUserSi) {
         click(MahasiswaLocators.btnDeactivate(idUserSi));
     }
 
-    public boolean tombolAktifkanTampil(String idUserSi) {
+    public boolean tombolAktifkanTampil(int idUserSi) {
         return isDisplayed(MahasiswaLocators.btnActivate(idUserSi));
     }
 
-    public boolean tombolNonaktifkanTampil(String idUserSi) {
+    public boolean tombolNonaktifkanTampil(int idUserSi) {
         return isDisplayed(MahasiswaLocators.btnDeactivate(idUserSi));
     }
 
